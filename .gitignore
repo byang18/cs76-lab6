@@ -1,0 +1,4 @@
+*.pyc
+writeup/*
+helloworld.py
+uninformed_search.py
