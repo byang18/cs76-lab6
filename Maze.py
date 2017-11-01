@@ -73,8 +73,18 @@ class Maze:
         if y < 0 or y >= self.height:
             return False
 
-        return self.map[self.index(x, y)] == "."
+        return self.map[self.index(x, y)] in ["R", "G", "B", "Y"]
 
+    def get_color(self, x, y):
+        if self.map[self.index(x, y)] == "B":
+            return "B"
+        elif self.map[self.index(x, y)] == "G":
+            return "G"
+        elif self.map[self.index(x, y)] == "R":
+            return "R"
+        elif self.map[self.index(x, y)] == "Y":
+            return "Y"
+        return "W"
 
     def has_robot(self, x, y):
         if x < 0 or x >= self.width:
@@ -89,7 +99,6 @@ class Maze:
                 return True
 
         return False
-
 
     # function called only by __str__ that takes the map and the
     #  robot state, and generates a list of characters in order
@@ -139,7 +148,7 @@ if __name__ == "__main__":
     test_maze0 = Maze("mazes/maze0.maz")
     print("Maze 0")
     print(test_maze0)
-    print(test_maze0.is_floor(0, 1))
+    print(test_maze0.has_robot(0, 0))
     #
     # test_maze2 = Maze("mazes/maze2.maz")
     # print("Maze 2")

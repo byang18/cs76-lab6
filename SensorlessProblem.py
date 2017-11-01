@@ -51,7 +51,7 @@ class SensorlessProblem:
 
             # Empty integer types sneak in when state is converted to a list
             # If this happens, can skip
-            if(type(pair)) is int:
+            if(isinstance(pair)) is int:
                 continue
 
             # coordinate right now
