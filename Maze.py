@@ -60,13 +60,24 @@ class Maze:
 
         self.width = len(lines[0])
         self.height = len(lines)
+        self.colors = ["R", "G", "B", "Y"]
 
         self.map = list("".join(lines))
+
+    # gets the number of walls in the maze
+    def num_walls(self):
+        count = 0
+        for x in range(self.width):
+            for y in range(self.height):
+                if not self.is_floor(x, y):
+                    count += 1
+        return count
 
     def index(self, x, y):
         return (self.height - y - 1) * self.width + x
 
     # returns True if the location is a floor
+    # floor in this corresponds to one of the possible colors
     def is_floor(self, x, y):
         if x < 0 or x >= self.width:
             return False
@@ -118,8 +129,6 @@ class Maze:
 
         return renderlist
 
-
-
     def __str__(self):
 
         # render robot locations into the map
@@ -128,12 +137,12 @@ class Maze:
         # use the renderlist to construct a string, by
         #  adding newlines appropriately
 
-        s = ""
+        s = "      "
         for y in range(self.height - 1, -1, -1):
             for x in range(self.width):
                 s += renderlist[self.index(x, y)]
 
-            s += "\n"
+            s += "\n      "
 
         return s
 
@@ -148,7 +157,6 @@ if __name__ == "__main__":
     test_maze0 = Maze("mazes/maze0.maz")
     print("Maze 0")
     print(test_maze0)
-    print(test_maze0.has_robot(0, 0))
     #
     # test_maze2 = Maze("mazes/maze2.maz")
     # print("Maze 2")
